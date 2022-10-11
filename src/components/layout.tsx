@@ -1,17 +1,17 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-import styled from '@emotion/styled'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
+import styled from '@emotion/styled';
 
-import Header from './header'
+import Header from './header';
 
-import './layout.css'
+import './layout.css';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const Layout = ({ children }: Props) => (
+export const Layout = ({ children }: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -28,7 +28,7 @@ const Layout = ({ children }: Props) => (
           title={data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'keywords', content: 'sample, something' }
           ]}
         >
           <html lang="en" />
@@ -38,13 +38,11 @@ const Layout = ({ children }: Props) => (
       </>
     )}
   />
-)
-
-export default Layout
+);
 
 const Container = styled.div`
   margin: 0 auto;
   max-width: 960px;
   padding: 0px 1.0875rem 1.45rem;
   padding-top: 0;
-`
+`;
