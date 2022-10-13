@@ -2,25 +2,25 @@ import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
 import { css } from '@emotion/css';
 
-import { Layout } from '../components/layout';
+type Node = {
+  node: {
+    id: number;
+    mediafile: {
+      id: number;
+      title: string;
+      file: {
+        url: string;
+        contentType: string;
+      };
+    };
+    title: string;
+  };
+};
 
 type DataProps = {
   allContentfulPortfolioItem: {
     totalCount: number;
-    edges: {
-      node: {
-        id: number;
-        mediafile: {
-          id: number;
-          title: string;
-          file: {
-            url: string;
-            contentType: string;
-          };
-        };
-        title: string;
-      };
-    };
+    edges: Node[];
   };
 };
 
@@ -39,6 +39,49 @@ const IndexPage = (props: PageProps<DataProps>) => {
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <Link to="/page-2/">Go to page 2</Link>
+      <div
+        css={{
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gridGap: '10px'
+        }}
+      >
+        {allContentfulPortfolioItem.edges.map((edge) => (
+          <div
+            key={edge.node.id}
+            css={{ border: '1px solid black', height: 0, paddingTop: '60%', position: 'relative' }}
+          >
+            {edge.node.mediafile.file.contentType.includes('video') ? (
+              <video
+                src={edge.node.mediafile.file.url}
+                css={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  maxWidth: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            ) : (
+              <img
+                src={edge.node.mediafile.file.url}
+                css={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  maxWidth: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </>
   );
 };

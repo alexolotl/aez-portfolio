@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import Header from './header';
 
 import './layout.css';
+import './global.css';
 
 type Props = {
   children: React.ReactNode;
@@ -42,7 +43,5 @@ export const Layout = ({ children }: Props) => (
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
-  padding-top: 0;
+  padding: 1rem;
 `;

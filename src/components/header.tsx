@@ -19,12 +19,11 @@ const Header = ({ siteTitle }: Props) => (
 export default Header;
 
 const HeaderWrapper = styled.div`
-  background: rebeccapurple;
   margin-bottom: '1.45rem';
+  border-bottom: 1px solid black;
 `;
 const HeaderContainer = styled.div`
   margin: 0 auto;
-  max-width: 960px;
   padding: 1.45rem 1.0875rem;
 `;
 const StyledHeader = styled.h1`
@@ -32,6 +31,8 @@ const StyledHeader = styled.h1`
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
   text-decoration: none;
+  &:visited {
+    color: inherit;
+  }
 `;
