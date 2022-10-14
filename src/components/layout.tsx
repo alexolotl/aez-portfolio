@@ -7,12 +7,14 @@ import Header from './header';
 
 import './layout.css';
 import './global.css';
+import { ContentType } from '../pages';
 
 type Props = {
   children: React.ReactNode;
+  setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
 };
 
-export const Layout = ({ children }: Props) => (
+export const Layout = ({ children, setActiveContentType }: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -34,7 +36,10 @@ export const Layout = ({ children }: Props) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          setActiveContentType={setActiveContentType}
+        />
         <Container style={{}}>{children}</Container>
       </>
     )}

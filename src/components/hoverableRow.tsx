@@ -1,5 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { DataEdge } from '../pages';
+import { MediaRenderer } from './MediaRenderer';
 
 const maxWidth = window.innerWidth / 2;
 const maxHeight = window.innerHeight * 0.6;
@@ -11,13 +12,21 @@ interface Props {
   isHovered: boolean;
   isSelected: boolean;
   setActiveIndex: (n: number | null) => void;
-  setIsDetailsOpen: React.Dispatch<React.SetStateAction<number | null>>;
+  setSelectedProjectIdx: React.Dispatch<React.SetStateAction<number | null>>;
   mousePos: { x: number; y: number };
   i: number;
 }
 export const HoverableRow = (props: Props) => {
-  const { edge, isActive, isHovered, isSelected, setActiveIndex, setIsDetailsOpen, mousePos, i } =
-    props;
+  const {
+    edge,
+    isActive,
+    isHovered,
+    isSelected,
+    setActiveIndex,
+    setSelectedProjectIdx,
+    mousePos,
+    i
+  } = props;
 
   const mediaRef = useRef<HTMLDivElement>(null);
 
@@ -84,7 +93,7 @@ export const HoverableRow = (props: Props) => {
         backgroundSize: '10px 10px',
         padding: '0 16px'
       }}
-      onClick={() => setIsDetailsOpen((o) => (o !== i ? i : null))}
+      onClick={() => setSelectedProjectIdx((o) => (o !== i ? i : null))}
       onMouseEnter={() => setActiveIndex(i)}
       onMouseLeave={() => setActiveIndex(null)}
     >
@@ -111,34 +120,7 @@ export const HoverableRow = (props: Props) => {
         }}
         ref={mediaRef}
       >
-        {edge.node.mediafile.file.contentType.includes('video') ? (
-          <video
-            src={edge.node.mediafile.file.url}
-            css={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '100%',
-              objectFit: 'contain',
-              border: '1px solid #121212',
-              background: 'white'
-            }}
-            autoPlay
-            loop
-          />
-        ) : (
-          <img
-            src={edge.node.mediafile.file.url}
-            css={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '100%',
-              objectFit: 'cover',
-              border: '1px solid #121212',
-              background: 'white',
-              zIndex: isSelected ? 0 : 1000
-            }}
-          />
-        )}
+        <MediaRenderer edge={edge} hasBorder />
       </div>
     </div>
   );
