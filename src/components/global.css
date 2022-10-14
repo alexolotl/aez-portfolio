@@ -2,6 +2,8 @@ html,
 body {
   font-family: 'Akzidenz-Grotesk Pro Regular', sans-serif;
   letter-spacing: 0.1em;
+  background: #fdfdfd;
+  color: #121212;
 }
 
 h1,
@@ -13,4 +15,5 @@ h6,
 p,
 a {
   font-family: 'Akzidenz-Grotesk Pro Regular', sans-serif;
+  color: #121212;
 }

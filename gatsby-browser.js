@@ -7,7 +7,6 @@
 // You can delete this file if you're not using it
 
 const React = require("react")
-const { Layout } = require("./src/components/layout")
 
 // Logs when the client route changes
 export const onRouteUpdate = ({ location, prevLocation }) => {
@@ -16,6 +15,6 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
 }
 
 // Wraps every page in a component
-export const wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>
+export const wrapPageElement = ({ element }) => {
+  return <>{element}</>
 }

@@ -20,11 +20,20 @@ export default Header;
 
 const HeaderWrapper = styled.div`
   margin-bottom: '1.45rem';
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #121212;
+  position: sticky;
+  top: 0;
+  background-color: #fdfdfd;
+  // z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 16px;
 `;
 const HeaderContainer = styled.div`
-  margin: 0 auto;
-  padding: 1.45rem 1.0875rem;
+  // margin: 0 auto;
+  // padding: 1.45rem 1.0875rem;
 `;
 const StyledHeader = styled.h1`
   margin: 0;

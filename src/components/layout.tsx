@@ -43,5 +43,5 @@ export const Layout = ({ children }: Props) => (
 
 const Container = styled.div`
   margin: 0 auto;
-  padding: 1rem;
+  // padding: 1rem;
 `;
