@@ -12,9 +12,16 @@ import { ContentType } from '../pages';
 type Props = {
   children: React.ReactNode;
   setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
+  setSelectedProjectIdx: React.Dispatch<React.SetStateAction<number | null>>;
+  HEADER_HEIGHT: number;
 };
 
-export const Layout = ({ children, setActiveContentType }: Props) => (
+export const Layout = ({
+  children,
+  setActiveContentType,
+  setSelectedProjectIdx,
+  HEADER_HEIGHT
+}: Props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -39,6 +46,8 @@ export const Layout = ({ children, setActiveContentType }: Props) => (
         <Header
           siteTitle={data.site.siteMetadata.title}
           setActiveContentType={setActiveContentType}
+          setSelectedProjectIdx={setSelectedProjectIdx}
+          HEADER_HEIGHT={HEADER_HEIGHT}
         />
         <Container style={{}}>{children}</Container>
       </>

@@ -17,3 +17,10 @@ a {
   font-family: 'Akzidenz-Grotesk Pro Regular', sans-serif;
   color: #121212;
 }
+
+::selection {
+  background: #93ff2d; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #93ff2d; /* Gecko Browsers */
+}

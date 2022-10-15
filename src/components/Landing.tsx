@@ -28,9 +28,10 @@ const CustomLetter = styled.h2`
 interface Props {
   setHasPerformedFirstClick: React.Dispatch<React.SetStateAction<boolean>>;
   entryText: string;
+  loadingAnimationStarted: boolean;
 }
 export const Landing = (props: Props) => {
-  const { setHasPerformedFirstClick, entryText } = props;
+  const { setHasPerformedFirstClick, entryText, loadingAnimationStarted } = props;
   return (
     <div
       css={{
@@ -40,7 +41,10 @@ export const Landing = (props: Props) => {
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        opacity: loadingAnimationStarted ? 0 : 0.8,
+        filter: loadingAnimationStarted ? 'blur(5px)' : 'blur(0px)',
+        transition: 'opacity 2s, blur 2s'
       }}
     >
       <span
@@ -61,7 +65,7 @@ export const Landing = (props: Props) => {
           <CustomLetter
             key={`customletter-${i}`}
             css={{
-              animation: `${bounce} ${1 + i / 10.12345}s ease infinite`
+              animation: `${bounce} ${3 + i / 10.12345}s ease infinite`
             }}
           >
             {letter}

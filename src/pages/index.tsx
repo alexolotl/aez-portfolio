@@ -1,43 +1,42 @@
 import { useState } from 'react';
 import { graphql, PageProps } from 'gatsby';
-import { css } from '@emotion/css';
 import { useEffect } from 'react';
 import { throttle } from 'lodash';
 import { Layout } from '../components/layout';
 import { About } from '../components/About';
 import { DropdownContainer } from '../components/DropdownContainer';
-import { Contact } from '../components/Contact';
 import { Landing } from '../components/Landing';
-import { MediaRenderer } from '../components/MediaRenderer';
+// import { MediaRenderer } from '../components/MediaRenderer';
 import { ProjectsSection } from '../components/ProjectsSection';
 
-const HEADER_HEIGHT = 80;
+const HEADER_HEIGHT = 60;
 
 export enum ContentType {
   ABOUT = 'ABOUT',
-  CONTACT = 'CONTACT',
   WORK = 'WORK',
   NONE = 'NONE'
 }
+
+export type MediaFile = {
+  id: number;
+  title: string;
+  file: {
+    url: string;
+    contentType: string;
+    details: {
+      image?: {
+        width: number;
+        height: number;
+      };
+    };
+  };
+};
 
 export type DataEdge = {
   node: {
     id: number;
     description: string;
-    mediafile: {
-      id: number;
-      title: string;
-      file: {
-        url: string;
-        contentType: string;
-        details: {
-          image?: {
-            width: number;
-            height: number;
-          };
-        };
-      };
-    };
+    mediafile: MediaFile;
     title: string;
   };
 };
@@ -54,12 +53,30 @@ const IndexPage = (props: PageProps<DataProps>) => {
 
   const [activeContentType, setActiveContentType] = useState<ContentType>(ContentType.NONE);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState<number | null>(null);
-
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const [hasPerformedFirstClick, setHasPerformedFirstClick] = useState(false);
+  const [loadingAnimationStarted, setLoadingAnimationStarted] = useState(false);
+  const [loadingAnimationDone, setLoadingAnimationDone] = useState(false);
+
+  const [fadeInOpacity, setFadeInOpacity] = useState(0);
+
+  useEffect(() => {
+    if (!hasPerformedFirstClick || loadingAnimationStarted || loadingAnimationDone) return;
+
+    setTimeout(() => {
+      setLoadingAnimationDone(true);
+    }, 2000);
+    setLoadingAnimationStarted(true);
+  }, [hasPerformedFirstClick, loadingAnimationStarted, loadingAnimationDone]);
+
+  useEffect(() => {
+    if (!setLoadingAnimationDone) return;
+
+    setTimeout(() => setFadeInOpacity(1), 3000);
+  }, [setLoadingAnimationDone]);
 
   useEffect(() => {
     const handleMouseMove = throttle((e: MouseEvent) => {
@@ -73,36 +90,59 @@ const IndexPage = (props: PageProps<DataProps>) => {
     };
   }, []);
 
-  return hasPerformedFirstClick ? (
-    <Layout setActiveContentType={setActiveContentType}>
-      <DropdownContainer isOpen={activeContentType !== ContentType.NONE}>
-        {activeContentType === ContentType.ABOUT && <About />}
-        {activeContentType === ContentType.CONTACT && <Contact />}
-        {activeContentType === ContentType.WORK && (
+  if (loadingAnimationDone) {
+    return (
+      <div css={{ opacity: fadeInOpacity, transition: 'opacity 1s' }}>
+        <Layout
+          setActiveContentType={setActiveContentType}
+          setSelectedProjectIdx={setSelectedProjectIdx}
+          HEADER_HEIGHT={HEADER_HEIGHT}
+        >
+          <DropdownContainer
+            isOpen={activeContentType === ContentType.ABOUT}
+            HEADER_HEIGHT={HEADER_HEIGHT}
+          >
+            {/* {activeContentType === ContentType.ABOUT && ( */}
+            <About />
+            {/* )} */}
+            {/* {activeContentType === ContentType.WORK && (
           <MediaRenderer
             edge={
               selectedProjectIdx !== null
                 ? allContentfulPortfolioItem.edges[selectedProjectIdx]
                 : null
             }
-          />
-        )}
-      </DropdownContainer>
+          /> 
+        )}*/}
+          </DropdownContainer>
 
-      <ProjectsSection
-        edges={allContentfulPortfolioItem.edges}
-        mousePos={mousePos}
-        selectedProjectIdx={selectedProjectIdx}
-        setSelectedProjectIdx={setSelectedProjectIdx}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        activeContentType={activeContentType}
-        HEADER_HEIGHT={HEADER_HEIGHT}
+          <ProjectsSection
+            edges={allContentfulPortfolioItem.edges}
+            mousePos={mousePos}
+            selectedProjectIdx={selectedProjectIdx}
+            setSelectedProjectIdx={setSelectedProjectIdx}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+            activeContentType={activeContentType}
+            setActiveContentType={setActiveContentType}
+            HEADER_HEIGHT={HEADER_HEIGHT}
+          />
+        </Layout>
+      </div>
+    );
+  }
+
+  if (!loadingAnimationDone) {
+    return (
+      <Landing
+        entryText="ENTER"
+        setHasPerformedFirstClick={setHasPerformedFirstClick}
+        loadingAnimationStarted={loadingAnimationStarted}
       />
-    </Layout>
-  ) : (
-    <Landing entryText="WELCOME" setHasPerformedFirstClick={setHasPerformedFirstClick} />
-  );
+    );
+  }
+
+  return null;
 };
 
 export default IndexPage;

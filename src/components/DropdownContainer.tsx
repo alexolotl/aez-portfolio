@@ -3,10 +3,11 @@ import React from 'react';
 interface Props {
   isOpen: boolean;
   children: React.ReactNode;
+  HEADER_HEIGHT: number;
 }
 
 export const DropdownContainer = (props: Props) => {
-  const { isOpen, children } = props;
+  const { isOpen, HEADER_HEIGHT, children } = props;
 
   return (
     <div
@@ -14,12 +15,9 @@ export const DropdownContainer = (props: Props) => {
         height: isOpen ? 500 : 0,
         width: '100%',
         transition: 'height .5s, padding .5s',
-        borderBottom: '1px solid black',
-        visibility: isOpen ? 'visible' : 'hidden',
-        // padding: isOpen ? '16px' : '0px 16px',
         overflow: 'hidden',
         position: 'sticky',
-        top: 80
+        top: HEADER_HEIGHT
       }}
     >
       {children}

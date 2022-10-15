@@ -1,26 +1,28 @@
-import { DataEdge } from '../pages';
+import { MediaFile } from '../pages';
 
 interface Props {
-  edge: DataEdge | null;
+  mediafile?: MediaFile;
   hasBorder?: boolean;
   handleClick?: () => void;
+  contain?: boolean;
+  zIndex?: number;
 }
 
 export const MediaRenderer = (props: Props) => {
-  const { edge, hasBorder, handleClick } = props;
+  const { mediafile, hasBorder, handleClick, contain, zIndex } = props;
 
-  if (!edge) return null;
+  if (!mediafile) return null;
 
-  return edge.node.mediafile.file.contentType.includes('video') ? (
+  return mediafile.file.contentType.includes('video') ? (
     <video
-      src={edge.node.mediafile.file.url}
+      src={mediafile.file.url}
       css={{
         width: '100%',
         height: '100%',
         maxWidth: '100%',
-        objectFit: 'cover',
+        objectFit: contain ? 'contain' : 'cover',
         border: hasBorder ? '1px solid #121212' : 'none',
-        background: 'white'
+        zIndex: zIndex !== undefined ? zIndex : 'inherit'
       }}
       autoPlay
       loop
@@ -28,14 +30,14 @@ export const MediaRenderer = (props: Props) => {
     />
   ) : (
     <img
-      src={edge.node.mediafile.file.url}
+      src={mediafile.file.url}
       css={{
         width: '100%',
         height: '100%',
         maxWidth: '100%',
-        objectFit: 'cover',
+        objectFit: contain ? 'contain' : 'cover',
         border: hasBorder ? '1px solid #121212' : 'none',
-        background: 'white'
+        zIndex: zIndex !== undefined ? zIndex : 'inherit'
       }}
       onClick={() => (handleClick ? handleClick() : null)}
     />

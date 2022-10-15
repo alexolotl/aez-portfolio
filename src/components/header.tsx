@@ -2,45 +2,37 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { ContentType } from '../pages';
+import { BlobText } from './BlobText';
 
 type Props = {
   siteTitle: string;
   setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
+  setSelectedProjectIdx: React.Dispatch<React.SetStateAction<number | null>>;
+  HEADER_HEIGHT: number;
 };
 
-const Header = ({ siteTitle, setActiveContentType }: Props) => (
-  <HeaderWrapper>
+const Header = ({
+  siteTitle,
+  setActiveContentType,
+  setSelectedProjectIdx,
+  HEADER_HEIGHT
+}: Props) => (
+  <HeaderWrapper css={{ height: HEADER_HEIGHT }}>
     <HeaderContainer>
+      {/* <BlobText text={siteTitle.toUpperCase()} /> */}
       <StyledHeader>
         {/* <StyledLink to="/">{siteTitle}</StyledLink> */}
         {siteTitle}
       </StyledHeader>
       <StyledHeader
-        onClick={() =>
-          setActiveContentType((c) =>
-            c === ContentType.WORK ? ContentType.NONE : ContentType.WORK
-          )
-        }
-      >
-        Work
-      </StyledHeader>
-      <StyledHeader
-        onClick={() =>
+        onClick={() => {
           setActiveContentType((c) =>
             c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
-          )
-        }
+          );
+          setSelectedProjectIdx(null);
+        }}
       >
         About
-      </StyledHeader>
-      <StyledHeader
-        onClick={() =>
-          setActiveContentType((c) =>
-            c === ContentType.CONTACT ? ContentType.NONE : ContentType.CONTACT
-          )
-        }
-      >
-        Contact
       </StyledHeader>
     </HeaderContainer>
   </HeaderWrapper>
@@ -50,12 +42,11 @@ export default Header;
 
 const HeaderWrapper = styled.div`
   margin-bottom: '1.45rem';
-  border-bottom: 1px solid #121212;
+  border-bottom: 2px solid #121212;
   position: sticky;
   top: 0;
   background-color: #fdfdfd;
   // z-index: 1000;
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -72,12 +63,11 @@ const HeaderContainer = styled.div`
 const StyledHeader = styled.h1`
   margin: 0;
   cursor: pointer;
-  text-transform: uppercase;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  &:visited {
-    color: inherit;
+  // text-transform: uppercase;
+  filter: blur(0px);
+  :hover {
+    filter: blur(2px);
   }
 `;
+
+// Aeroport, FavoritPro-Regular, Perun

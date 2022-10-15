@@ -1,6 +1,7 @@
 import React from 'react';
 import { ContentType, DataEdge } from '../pages';
 import { HoverableRow } from './hoverableRow';
+import { SelectedProject } from './SelectedProject';
 
 interface Props {
   edges: DataEdge[];
@@ -10,6 +11,7 @@ interface Props {
   activeIndex: number | null;
   setActiveIndex: React.Dispatch<React.SetStateAction<number | null>>;
   activeContentType: ContentType;
+  setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
   HEADER_HEIGHT: number;
 }
 
@@ -22,6 +24,7 @@ export const ProjectsSection = (props: Props) => {
     activeIndex,
     setActiveIndex,
     activeContentType,
+    setActiveContentType,
     HEADER_HEIGHT
   } = props;
 
@@ -34,7 +37,8 @@ export const ProjectsSection = (props: Props) => {
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
         overflowY: 'hidden',
-        borderTop: activeContentType !== ContentType.NONE ? '1px solid black' : 'none'
+        borderTop: activeContentType === ContentType.ABOUT ? '2px solid black' : 'none',
+        top: activeContentType === ContentType.ABOUT ? '-2px' : 0
       }}
     >
       <div
@@ -56,47 +60,20 @@ export const ProjectsSection = (props: Props) => {
             isSelected={selectedProjectIdx === i}
             setActiveIndex={setActiveIndex}
             setSelectedProjectIdx={setSelectedProjectIdx}
+            activeContentType={activeContentType}
+            setActiveContentType={setActiveContentType}
             mousePos={mousePos}
             i={i}
             key={edge.node.id}
           />
         ))}
       </div>
-      <div
-        css={{
-          alignSelf: 'flex-start',
-          position: 'sticky',
-          top: 0,
-          width: selectedProjectIdx !== null ? 500 : 0,
-          height: '100vh',
-          transition: 'width .5s',
-          overflow: 'hidden',
-          cursor: 'e-resize',
-          backgroundImage: 'radial-gradient(#121212 0.5px, #fafafa 0.5px)',
-          backgroundSize: '10px 10px'
-        }}
-        onClick={() => setSelectedProjectIdx(null)}
-      >
-        <div
-          css={{
-            width: 350,
-            maxWidth: '100%',
-            overflow: 'hidden',
-            padding: 24,
-            textAlign: 'left',
-            height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-            maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            flexFlow: 'column nowrap'
-          }}
-        >
-          <h4>{selectedProjectIdx !== null && edges[selectedProjectIdx].node.title}</h4>
-          <p>{selectedProjectIdx !== null && edges[selectedProjectIdx].node.description}</p>
-          {<a>Visit</a>}
-        </div>
-      </div>
+      <SelectedProject
+        selectedProjectIdx={selectedProjectIdx}
+        setSelectedProjectIdx={setSelectedProjectIdx}
+        edge={selectedProjectIdx !== null ? edges[selectedProjectIdx] : null}
+        HEADER_HEIGHT={HEADER_HEIGHT}
+      />
     </div>
   );
 };
