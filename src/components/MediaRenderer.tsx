@@ -6,10 +6,11 @@ interface Props {
   handleClick?: () => void;
   contain?: boolean;
   zIndex?: number;
+  absolute?: boolean;
 }
 
 export const MediaRenderer = (props: Props) => {
-  const { mediafile, hasBorder, handleClick, contain, zIndex } = props;
+  const { mediafile, hasBorder, handleClick, contain, zIndex, absolute } = props;
 
   if (!mediafile) return null;
 
@@ -22,7 +23,10 @@ export const MediaRenderer = (props: Props) => {
         maxWidth: '100%',
         objectFit: contain ? 'contain' : 'cover',
         border: hasBorder ? '1px solid #121212' : 'none',
-        zIndex: zIndex !== undefined ? zIndex : 'inherit'
+        zIndex: zIndex !== undefined ? zIndex : 'inherit',
+        position: absolute ? 'absolute' : 'block',
+        top: 0,
+        left: 0
       }}
       autoPlay
       loop
@@ -37,7 +41,10 @@ export const MediaRenderer = (props: Props) => {
         maxWidth: '100%',
         objectFit: contain ? 'contain' : 'cover',
         border: hasBorder ? '1px solid #121212' : 'none',
-        zIndex: zIndex !== undefined ? zIndex : 'inherit'
+        zIndex: zIndex !== undefined ? zIndex : 'inherit',
+        position: absolute ? 'absolute' : 'block',
+        top: 0,
+        left: 0
       }}
       onClick={() => (handleClick ? handleClick() : null)}
     />

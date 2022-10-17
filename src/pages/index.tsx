@@ -8,6 +8,7 @@ import { DropdownContainer } from '../components/DropdownContainer';
 import { Landing } from '../components/Landing';
 // import { MediaRenderer } from '../components/MediaRenderer';
 import { ProjectsSection } from '../components/ProjectsSection';
+import { MobileProjects } from '../components/MobileProjects';
 
 const HEADER_HEIGHT = 60;
 
@@ -90,7 +91,26 @@ const IndexPage = (props: PageProps<DataProps>) => {
     };
   }, []);
 
+  const isMobile = window.innerWidth <= 1000;
+
   if (loadingAnimationDone) {
+    if (isMobile) {
+      return (
+        <Layout
+          setActiveContentType={setActiveContentType}
+          setSelectedProjectIdx={setSelectedProjectIdx}
+          HEADER_HEIGHT={HEADER_HEIGHT}
+        >
+          <MobileProjects
+            edges={allContentfulPortfolioItem.edges}
+            HEADER_HEIGHT={HEADER_HEIGHT}
+            activeContentType={activeContentType}
+            setActiveContentType={setActiveContentType}
+          />
+        </Layout>
+      );
+    }
+
     return (
       <div css={{ opacity: fadeInOpacity, transition: 'opacity 1s' }}>
         <Layout
@@ -175,52 +195,3 @@ export const query = graphql`
     }
   }
 `;
-
-// {
-//   /* <Link to="/page-2/">Go to page 2</Link> */
-// }
-// {
-//   /* GRID <div
-//         css={{
-//           width: '100%',
-//           display: 'grid',
-//           gridTemplateColumns: '1fr 1fr 1fr',
-//           gridGap: '10px'
-//         }}
-//       >
-//         {allContentfulPortfolioItem.edges.map((edge) => (
-//           <div
-//             key={edge.node.id}
-//             css={{ border: '1px solid #121212', height: 0, paddingTop: '60%', position: 'relative' }}
-//           >
-//             {edge.node.mediafile.file.contentType.includes('video') ? (
-//               <video
-//                 src={edge.node.mediafile.file.url}
-//                 css={{
-//                   position: 'absolute',
-//                   top: 0,
-//                   left: 0,
-//                   width: '100%',
-//                   height: '100%',
-//                   maxWidth: '100%',
-//                   objectFit: 'cover'
-//                 }}
-//               />
-//             ) : (
-//               <img
-//                 src={edge.node.mediafile.file.url}
-//                 css={{
-//                   position: 'absolute',
-//                   top: 0,
-//                   left: 0,
-//                   width: '100%',
-//                   height: '100%',
-//                   maxWidth: '100%',
-//                   objectFit: 'cover'
-//                 }}
-//               />
-//             )}
-//           </div>
-//         ))}
-//       </div> */
-// }

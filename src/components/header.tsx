@@ -24,16 +24,28 @@ const Header = ({
         {/* <StyledLink to="/">{siteTitle}</StyledLink> */}
         {siteTitle}
       </StyledHeader>
-      <StyledHeader
-        onClick={() => {
-          setActiveContentType((c) =>
-            c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
-          );
-          setSelectedProjectIdx(null);
-        }}
-      >
-        About
-      </StyledHeader>
+      {true ? (
+        <div
+          onClick={() => {
+            setActiveContentType((c) =>
+              c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
+            );
+            setSelectedProjectIdx(null);
+          }}
+          css={{ width: 16, height: 16, background: '#121212' }}
+        />
+      ) : (
+        <StyledHeader
+          onClick={() => {
+            setActiveContentType((c) =>
+              c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
+            );
+            setSelectedProjectIdx(null);
+          }}
+        >
+          About
+        </StyledHeader>
+      )}
     </HeaderContainer>
   </HeaderWrapper>
 );
@@ -46,7 +58,7 @@ const HeaderWrapper = styled.div`
   position: sticky;
   top: 0;
   background-color: #fdfdfd;
-  // z-index: 1000;
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -64,10 +76,10 @@ const StyledHeader = styled.h1`
   margin: 0;
   cursor: pointer;
   // text-transform: uppercase;
-  filter: blur(0px);
-  :hover {
-    filter: blur(2px);
-  }
+  // filter: blur(0px);
+  // :hover {
+  //   filter: blur(2px);
+  // }
 `;
 
 // Aeroport, FavoritPro-Regular, Perun
