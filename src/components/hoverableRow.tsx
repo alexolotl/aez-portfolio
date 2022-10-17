@@ -1,13 +1,6 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ContentType, DataEdge } from '../pages';
 import { MediaRenderer } from './MediaRenderer';
-
-const windowWidth = window ? window.innerWidth : 0;
-const windowHeight = window ? window.innerHeight : 0;
-
-const maxWidth = window ? windowWidth * 0.4 : 0;
-const maxHeight = window ? windowHeight * 0.4 : 0;
-const extraSpaceFromMouse = 16;
 
 interface Props {
   edge: DataEdge;
@@ -36,6 +29,20 @@ export const HoverableRow = (props: Props) => {
   } = props;
 
   const mediaRef = useRef<HTMLDivElement>(null);
+
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (!windowWidth || !windowHeight) {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    }
+  }, [windowWidth, windowHeight]);
+
+  const maxWidth = windowWidth * 0.4;
+  const maxHeight = windowHeight * 0.4;
+  const extraSpaceFromMouse = 16;
 
   const mediaFullWidth = useMemo(
     () =>

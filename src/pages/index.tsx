@@ -64,6 +64,8 @@ const IndexPage = (props: PageProps<DataProps>) => {
 
   const [fadeInOpacity, setFadeInOpacity] = useState(0);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     if (!hasPerformedFirstClick || loadingAnimationStarted || loadingAnimationDone) return;
 
@@ -91,7 +93,11 @@ const IndexPage = (props: PageProps<DataProps>) => {
     };
   }, []);
 
-  const isMobile = window && window.innerWidth <= 1000;
+  useEffect(() => {
+    if (window.innerWidth <= 800) {
+      setIsMobile(true);
+    }
+  }, []);
 
   if (loadingAnimationDone) {
     if (isMobile) {
