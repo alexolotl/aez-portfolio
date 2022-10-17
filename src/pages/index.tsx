@@ -91,7 +91,7 @@ const IndexPage = (props: PageProps<DataProps>) => {
     };
   }, []);
 
-  const isMobile = window.innerWidth <= 1000;
+  const isMobile = window && window.innerWidth <= 1000;
 
   if (loadingAnimationDone) {
     if (isMobile) {

@@ -2,8 +2,11 @@ import React, { useMemo, useRef } from 'react';
 import { ContentType, DataEdge } from '../pages';
 import { MediaRenderer } from './MediaRenderer';
 
-const maxWidth = window.innerWidth * 0.4;
-const maxHeight = window.innerHeight * 0.4;
+const windowWidth = window ? window.innerWidth : 0;
+const windowHeight = window ? window.innerHeight : 0;
+
+const maxWidth = window ? windowWidth * 0.4 : 0;
+const maxHeight = window ? windowHeight * 0.4 : 0;
 const extraSpaceFromMouse = 16;
 
 interface Props {
@@ -62,10 +65,10 @@ export const HoverableRow = (props: Props) => {
 
   const flipYOrientation =
     mediaRef.current &&
-    mousePos.y + mediaRef.current.clientHeight + extraSpaceFromMouse > window.innerHeight;
+    mousePos.y + mediaRef.current.clientHeight + extraSpaceFromMouse > windowHeight;
   const flipXOrientation =
     mediaRef.current &&
-    mousePos.x + mediaRef.current.clientWidth + extraSpaceFromMouse > window.innerWidth;
+    mousePos.x + mediaRef.current.clientWidth + extraSpaceFromMouse > windowWidth;
 
   if (isActive) {
     console.log(widthCss, heightCss, mediaRef?.current?.clientWidth);
@@ -80,8 +83,8 @@ export const HoverableRow = (props: Props) => {
     ? mousePos.y - mediaRef.current.clientHeight - extraSpaceFromMouse
     : mousePos.y + extraSpaceFromMouse;
 
-  const xPos = isSelected ? (window.innerWidth - 350) / 2 - widthCss / 2 : hoveredXpos;
-  const yPos = isSelected ? window.innerHeight / 2 - heightCss / 2 : hoveredYpos;
+  const xPos = isSelected ? (windowWidth - 350) / 2 - widthCss / 2 : hoveredXpos;
+  const yPos = isSelected ? windowHeight / 2 - heightCss / 2 : hoveredYpos;
 
   const handleClick = () => {
     setSelectedProjectIdx((o) => (o !== i ? i : null));
