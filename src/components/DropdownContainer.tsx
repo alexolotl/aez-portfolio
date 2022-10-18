@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const DropdownContainer = (props: Props) => {
-  const { isOpen, HEADER_HEIGHT, children, isMobile } = props;
+  const { isOpen, children, isMobile } = props;
 
   return (
     <div
@@ -18,7 +18,7 @@ export const DropdownContainer = (props: Props) => {
         transition: 'height .5s, padding .5s',
         overflow: 'hidden',
         position: isMobile ? 'relative' : 'sticky',
-        top: isMobile ? 0 : HEADER_HEIGHT
+        top: 0
       }}
     >
       {children}

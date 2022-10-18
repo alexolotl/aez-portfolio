@@ -1,7 +1,7 @@
 html,
 body {
-  font-family: 'Akzidenz-Grotesk Pro Regular', sans-serif;
-  letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif;
+  /* letter-spacing: 0.1em; */
   background: #ffffff;
   color: #121212;
 }
@@ -14,8 +14,17 @@ h5,
 h6,
 p,
 a {
-  font-family: 'Akzidenz-Grotesk Pro Regular', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #121212;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  color: #121212;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 ::selection {

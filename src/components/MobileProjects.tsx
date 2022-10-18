@@ -41,8 +41,9 @@ export const MobileProjects = (props: Props) => {
           }}
         >
           <div onClick={() => setSelectedProject(null)}>Back</div>
+          <br />
           <h2>{selectedProject.node.title}</h2>
-          <h2>{selectedProject.node.description}</h2>
+          <p>{selectedProject.node.description}</p>
           <MediaRenderer mediafile={selectedProject.node.mediafile} hasBorder />
         </div>
       )}

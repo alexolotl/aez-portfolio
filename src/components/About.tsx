@@ -49,21 +49,25 @@ export const About = () => {
           overflow: 'hidden'
         }}
       >
-        <Textfit
-          mode="multi"
-          css={{
-            color: '#fdfdfd',
-            lineHeight: 1.4,
-            height: '100%',
-            width: '100%',
-            textAlign: 'justify'
-          }}
-        >
-          {
-            data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode
-              .description
-          }
-        </Textfit>
+        <h1>
+          <Textfit
+            mode="multi"
+            css={{
+              color: '#fdfdfd',
+              lineHeight: 1.4,
+              height: '100%',
+              width: '100%',
+              textAlign: 'justify'
+            }}
+            max={200}
+          >
+            {
+              data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode
+                .description
+            }
+            {' / my first initial + my last name + 219 at gmail'}
+          </Textfit>
+        </h1>
       </div>
       <div
         css={{

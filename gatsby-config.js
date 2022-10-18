@@ -34,6 +34,19 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-emotion`
+    },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [`https://rsms.me/`],
+        web: [
+          {
+            name: `Inter`,
+            file: `https://rsms.me/inter/inter.css`,
+          },
+        ],
+      },
     }
   ]
 };

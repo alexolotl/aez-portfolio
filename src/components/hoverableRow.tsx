@@ -130,13 +130,13 @@ export const HoverableRow = (props: Props) => {
       onMouseEnter={() => setActiveIndex(i)}
       onMouseLeave={() => setActiveIndex(null)}
     >
-      <h2
+      <h3
         css={{
           marginBottom: 0
         }}
       >
         {edge.node.title}
-      </h2>
+      </h3>
 
       <div
         css={{
