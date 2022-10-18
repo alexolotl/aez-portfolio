@@ -12,6 +12,8 @@ interface Props {
   mousePos: { x: number; y: number };
   activeContentType: ContentType;
   setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
+  windowWidth: number;
+  windowHeight: number;
   i: number;
 }
 export const HoverableRow = (props: Props) => {
@@ -25,42 +27,44 @@ export const HoverableRow = (props: Props) => {
     setActiveContentType,
     activeContentType,
     mousePos,
+    windowWidth,
+    windowHeight,
     i
   } = props;
 
   const mediaRef = useRef<HTMLDivElement>(null);
 
-  const [windowWidth, setWindowWidth] = useState<number>(0);
-  const [windowHeight, setWindowHeight] = useState<number>(0);
-
-  useEffect(() => {
-    if (!windowWidth || !windowHeight) {
-      setWindowWidth(window.innerWidth);
-      setWindowHeight(window.innerHeight);
-    }
-  }, [windowWidth, windowHeight]);
-
-  const maxWidth = windowWidth * 0.4;
-  const maxHeight = windowHeight * 0.4;
+  const maxWidth = useMemo(() => windowWidth * 0.4, [windowWidth]);
+  const maxHeight = useMemo(() => windowHeight * 0.4, [windowHeight]);
   const extraSpaceFromMouse = 16;
 
   const mediaFullWidth = useMemo(
     () =>
       edge.node.mediafile.file.details.image
         ? edge.node.mediafile.file.details.image.width
-        : mediaRef?.current?.children
+        : mediaRef?.current?.children?.length
         ? (mediaRef.current.children[0] as HTMLVideoElement).videoWidth
         : 0,
-    [edge?.node?.mediafile?.file?.details?.image?.width, mediaRef?.current]
+    [
+      edge?.node?.mediafile?.file?.details?.image?.width,
+      mediaRef?.current,
+      mediaRef?.current?.children?.length,
+      (mediaRef?.current?.children[0] as HTMLVideoElement)?.videoWidth
+    ]
   );
   const mediaFullHeight = useMemo(
     () =>
       edge.node.mediafile.file.details.image
         ? edge.node.mediafile.file.details.image.height
-        : mediaRef?.current?.children
+        : mediaRef?.current?.children?.length
         ? (mediaRef.current.children[0] as HTMLVideoElement).videoHeight
         : 0,
-    [edge?.node?.mediafile?.file?.details?.image?.height, mediaRef?.current]
+    [
+      edge?.node?.mediafile?.file?.details?.image?.height,
+      mediaRef?.current,
+      mediaRef?.current?.children?.length,
+      (mediaRef?.current?.children[0] as HTMLVideoElement)?.videoHeight
+    ]
   );
 
   const aspect = useMemo(
@@ -78,8 +82,17 @@ export const HoverableRow = (props: Props) => {
     mousePos.x + mediaRef.current.clientWidth + extraSpaceFromMouse > windowWidth;
 
   if (isActive) {
-    console.log(widthCss, heightCss, mediaRef?.current?.clientWidth);
-    console.log(edge.node.mediafile);
+    // console.log(widthCss, heightCss, mediaRef?.current?.clientWidth);
+    // console.log(
+    //   windowWidth,
+    //   maxWidth,
+    //   mediaFullWidth,
+    //   edge.node.mediafile.file.details.image
+    //     ? edge.node.mediafile.file.details.image.width
+    //     : mediaRef?.current?.children
+    //     ? (mediaRef.current.children[0] as HTMLVideoElement).videoWidth
+    //     : 0
+    // );
   }
 
   const hoveredXpos = flipXOrientation
@@ -107,7 +120,6 @@ export const HoverableRow = (props: Props) => {
         width: '100%',
         cursor: 'pointer',
         height: '60px',
-        // borderBottom: '1px solid #121212',
         display: 'flex',
         alignItems: 'center',
         backgroundImage: isActive ? 'radial-gradient(#121212 0.5px, #fafafa 0.5px)' : '',

@@ -25,7 +25,7 @@ export const MobileProjects = (props: Props) => {
   }, []);
 
   return (
-    <div css={{ display: 'flex', flexFlow: 'column nowrap' }}>
+    <div css={{ display: 'flex', flexFlow: 'column nowrap', width: '100%' }}>
       <DropdownContainer
         isOpen={activeContentType === ContentType.ABOUT}
         HEADER_HEIGHT={HEADER_HEIGHT}
@@ -52,6 +52,7 @@ export const MobileProjects = (props: Props) => {
           padding: 8,
           paddingTop: 16,
           width: '100%',
+          maxWidth: '100%',
           background: '#fdfdfd',
           zIndex: 1000,
           minHeight: '100vh'

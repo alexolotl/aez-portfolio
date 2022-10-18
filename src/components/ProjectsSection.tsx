@@ -1,4 +1,5 @@
-import React from 'react';
+import { throttle } from 'lodash';
+import React, { useEffect, useState } from 'react';
 import { ContentType, DataEdge } from '../pages';
 import { HoverableRow } from './hoverableRow';
 import { SelectedProject } from './SelectedProject';
@@ -27,6 +28,25 @@ export const ProjectsSection = (props: Props) => {
     setActiveContentType,
     HEADER_HEIGHT
   } = props;
+
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const handleSetWindowSize = throttle(() => {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    }, 100);
+
+    if (!windowWidth || !windowHeight) {
+      handleSetWindowSize();
+    }
+    window.addEventListener('resize', handleSetWindowSize);
+
+    return () => {
+      window.removeEventListener('resize', handleSetWindowSize);
+    };
+  }, [windowWidth, windowHeight]);
 
   return (
     <div
@@ -65,6 +85,8 @@ export const ProjectsSection = (props: Props) => {
             mousePos={mousePos}
             i={i}
             key={edge.node.id}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
           />
         ))}
       </div>

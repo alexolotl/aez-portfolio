@@ -24,28 +24,15 @@ const Header = ({
         {/* <StyledLink to="/">{siteTitle}</StyledLink> */}
         {siteTitle}
       </StyledHeader>
-      {true ? (
-        <div
-          onClick={() => {
-            setActiveContentType((c) =>
-              c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
-            );
-            setSelectedProjectIdx(null);
-          }}
-          css={{ width: 16, height: 16, background: '#121212' }}
-        />
-      ) : (
-        <StyledHeader
-          onClick={() => {
-            setActiveContentType((c) =>
-              c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
-            );
-            setSelectedProjectIdx(null);
-          }}
-        >
-          About
-        </StyledHeader>
-      )}
+      <div
+        onClick={() => {
+          setActiveContentType((c) =>
+            c === ContentType.ABOUT ? ContentType.NONE : ContentType.ABOUT
+          );
+          setSelectedProjectIdx(null);
+        }}
+        css={{ width: 16, height: 16, background: '#121212', cursor: 'pointer' }}
+      />
     </HeaderContainer>
   </HeaderWrapper>
 );

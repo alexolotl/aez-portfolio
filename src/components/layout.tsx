@@ -49,7 +49,7 @@ export const Layout = ({
           setSelectedProjectIdx={setSelectedProjectIdx}
           HEADER_HEIGHT={HEADER_HEIGHT}
         />
-        <Container style={{}}>{children}</Container>
+        <Container>{children}</Container>
       </>
     )}
   />
@@ -57,5 +57,6 @@ export const Layout = ({
 
 const Container = styled.div`
   margin: 0 auto;
-  // padding: 1rem;
+  max-width: 100vw;
+  overflow-x: hidden;
 `;

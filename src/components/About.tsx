@@ -1,5 +1,6 @@
 import { MediaRenderer } from './MediaRenderer';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Textfit } from 'react-textfit';
 
 export const About = () => {
   const data = useStaticQuery(graphql`
@@ -12,30 +13,68 @@ export const About = () => {
           url
         }
       }
+      allContentfulAbout {
+        edges {
+          node {
+            description {
+              description
+            }
+            background {
+              file {
+                contentType
+                url
+              }
+              title
+            }
+            childContentfulAboutDescriptionTextNode {
+              description
+            }
+          }
+        }
+      }
     }
   `);
 
   return (
-    <div css={{ height: '100%' }}>
+    <div css={{ height: '500px' }}>
       <div
         css={{
           zIndex: 1,
           width: '100%',
-          position: 'absolute',
+          height: '100%',
+          position: 'relative',
           left: 0,
           top: 0,
           padding: '16px 24px',
           overflow: 'hidden'
         }}
       >
-        <h2 css={{ color: '#fdfdfd', fontSize: '3rem', lineHeight: 1.4, textAlign: 'justify' }}>
-          Software Engineer / Frontend Developer with an interest in design and visual culture. I
-          work mostly on web apps in Typescript, React, Agile Environments, but also enjoy WebGL,
-          OpenFrameworks, and creative computation / example@email.com / New York, NY
-        </h2>
+        <Textfit
+          mode="multi"
+          css={{
+            color: '#fdfdfd',
+            lineHeight: 1.4,
+            height: '100%',
+            width: '100%',
+            textAlign: 'justify'
+          }}
+        >
+          {
+            data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode
+              .description
+          }
+        </Textfit>
       </div>
       <div
-        css={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', zIndex: 0 }}
+        css={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          background: '#12121222'
+        }}
       >
         <MediaRenderer mediafile={data.contentfulAsset} zIndex={0} />
       </div>

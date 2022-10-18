@@ -19,7 +19,8 @@ export const SelectedProject = (props: Props) => {
         position: 'sticky',
         top: 0,
         width: selectedProjectIdx !== null ? 500 : 0,
-        height: '100vh',
+        height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+        maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
         transition: 'width .5s',
         overflow: 'hidden',
         cursor: 'e-resize',
@@ -32,6 +33,7 @@ export const SelectedProject = (props: Props) => {
         css={{
           maxWidth: '100%',
           overflow: 'hidden',
+          overflowY: 'scroll',
           padding: 24,
           textAlign: 'left',
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
@@ -51,7 +53,17 @@ export const SelectedProject = (props: Props) => {
           <MediaRenderer mediafile={edge ? edge.node.mediafile : undefined} contain />
         </div>
 
-        <a>Visit</a>
+        {edge && edge.node.supportingMediafiles
+          ? edge.node.supportingMediafiles.map((mediaFile) => (
+              <div css={{ width: '100%', maxHeight: '40vh' }} key={mediaFile.id}>
+                <MediaRenderer mediafile={mediaFile} contain />
+              </div>
+            ))
+          : null}
+
+        <a href={edge && edge.node.link ? edge.node.link : ''} rel="noreferrer" target="_blank">
+          {edge && edge.node.link ? 'Visit' : ''}
+        </a>
       </div>
     </div>
   );

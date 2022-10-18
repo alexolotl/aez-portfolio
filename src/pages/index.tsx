@@ -6,7 +6,6 @@ import { Layout } from '../components/layout';
 import { About } from '../components/About';
 import { DropdownContainer } from '../components/DropdownContainer';
 import { Landing } from '../components/Landing';
-// import { MediaRenderer } from '../components/MediaRenderer';
 import { ProjectsSection } from '../components/ProjectsSection';
 import { MobileProjects } from '../components/MobileProjects';
 
@@ -38,7 +37,15 @@ export type DataEdge = {
     id: number;
     description: string;
     mediafile: MediaFile;
+    supportingMediafiles: MediaFile[];
     title: string;
+    link: string;
+  };
+};
+
+export type LandingEdge = {
+  node: {
+    entryText: string;
   };
 };
 
@@ -47,10 +54,13 @@ type DataProps = {
     totalCount: number;
     edges: DataEdge[];
   };
+  allContentfulLanding: {
+    edges: LandingEdge[];
+  };
 };
 
 const IndexPage = (props: PageProps<DataProps>) => {
-  const { allContentfulPortfolioItem } = props.data;
+  const { allContentfulPortfolioItem, allContentfulLanding } = props.data;
 
   const [activeContentType, setActiveContentType] = useState<ContentType>(ContentType.NONE);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState<number | null>(null);
@@ -94,9 +104,21 @@ const IndexPage = (props: PageProps<DataProps>) => {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth <= 800) {
-      setIsMobile(true);
-    }
+    const handleCheckIfMobile = throttle(() => {
+      if (window.innerWidth <= 800) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }, 100);
+
+    handleCheckIfMobile();
+
+    window.addEventListener('resize', handleCheckIfMobile);
+
+    return () => {
+      window.removeEventListener('resize', handleCheckIfMobile);
+    };
   }, []);
 
   if (loadingAnimationDone) {
@@ -161,7 +183,7 @@ const IndexPage = (props: PageProps<DataProps>) => {
   if (!loadingAnimationDone) {
     return (
       <Landing
-        entryText="ENTER"
+        entryText={allContentfulLanding.edges[0].node.entryText}
         setHasPerformedFirstClick={setHasPerformedFirstClick}
         loadingAnimationStarted={loadingAnimationStarted}
       />
@@ -181,6 +203,8 @@ export const query = graphql`
         node {
           id
           description
+          link
+          title
           mediafile {
             id
             title
@@ -195,7 +219,27 @@ export const query = graphql`
               }
             }
           }
-          title
+          supportingMediafiles {
+            id
+            title
+            file {
+              url
+              contentType
+              details {
+                image {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allContentfulLanding {
+      edges {
+        node {
+          entryText
         }
       }
     }

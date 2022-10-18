@@ -8,23 +8,23 @@ const bounce = keyframes`
   // }
 
   40%, 43% {
-    transform: translate3d(-.1em, 0px, 0);
+    transform: translate3d(-.04em, 0px, 0);
   }
 
   70% {
-    transform: translate3d(.1em, 0px, 0);
+    transform: translate3d(.04em, 0px, 0);
   }
 
   90% {
-    transform: translate3d(.2em,0px,0);
+    transform: translate3d(.07em,0px,0);
   }
 `;
 
 const CustomLetter = styled.h2`
   font-size: 180px;
-  filter: blur(10px);
+  filter: blur(9px);
   display: inline-block;
-  letter-spacing: -12px;
+  letter-spacing: -8px;
 
   @media (max-width: 800px) {
     font-size: 80px;
@@ -46,7 +46,7 @@ export const Landing = (props: Props) => {
   useEffect(() => {
     if (!passwordInput) return;
 
-    if (passwordInput === 'hello123') {
+    if (passwordInput === 'asdf123') {
       setEnteredPassword(true);
     }
   }, [passwordInput]);
