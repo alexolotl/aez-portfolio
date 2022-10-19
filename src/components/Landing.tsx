@@ -1,3 +1,4 @@
+import React from 'react';
 import { keyframes } from '@emotion/css';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
@@ -22,7 +23,7 @@ const bounce = keyframes`
 
 const CustomLetter = styled.h2`
   font-size: 180px;
-  filter: blur(9px);
+  filter: blur(8px);
   display: inline-block;
   letter-spacing: -8px;
 
@@ -40,7 +41,7 @@ interface Props {
 }
 export const Landing = (props: Props) => {
   const { setHasPerformedFirstClick, entryText, loadingAnimationStarted } = props;
-  const [enteredPassword, setEnteredPassword] = useState(false);
+  const [enteredPassword, setEnteredPassword] = useState(true);
   const [passwordInput, setPasswordInput] = useState<string>('');
 
   useEffect(() => {
@@ -54,30 +55,35 @@ export const Landing = (props: Props) => {
   return enteredPassword ? (
     <div
       css={{
-        width: '100vw',
-        height: '100vh',
-        maxHeight: '100vh',
+        width: '100%',
+        maxHeight: '100%',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        opacity: loadingAnimationStarted ? 0 : 0.8,
+        opacity: loadingAnimationStarted ? 0 : 1,
         filter: loadingAnimationStarted ? 'blur(5px)' : 'blur(0px)',
-        transition: 'opacity 2s, filter 2s'
+        transition: 'opacity 2s, filter 2s',
+        background: '#ffffff'
       }}
     >
       <span
         onClick={() => setHasPerformedFirstClick(true)}
         css={{
-          filter: 'contrast(20) blur(0px)',
+          filter: 'contrast(30) blur(0px)',
           transform: 'translateZ(0)',
-          background: '#fdfdfd',
+          background: '#ffffff',
           padding: '20px 60px',
           cursor: 'pointer',
           transition: 'filter .3s',
-          '&:hover': {
-            filter: 'contrast(20) blur(0px)'
-          }
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+          // '&:hover': {
+          //   filter: 'contrast(20) blur(0px)'
+          // }
         }}
       >
         {[...entryText].map((letter, i) => (
@@ -97,8 +103,8 @@ export const Landing = (props: Props) => {
   ) : (
     <div
       css={{
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

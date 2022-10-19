@@ -40,7 +40,9 @@ export const MobileProjects = (props: Props) => {
             padding: '16px 8px'
           }}
         >
-          <div onClick={() => setSelectedProject(null)}>Back</div>
+          <div css={{ width: '40px', height: '20px' }} onClick={() => setSelectedProject(null)}>
+            Back
+          </div>
           <br />
           <h2>{selectedProject.node.title}</h2>
           <p>{selectedProject.node.description}</p>
@@ -78,7 +80,7 @@ export const MobileProjects = (props: Props) => {
               }}
               onClick={() => handleClick(edge)}
             >
-              <MediaRenderer mediafile={edge.node.mediafile} hasBorder absolute />
+              <MediaRenderer mediafile={edge.node.mediafile} hasBorder absolute noPlay />
             </div>
           ))}
         </div>

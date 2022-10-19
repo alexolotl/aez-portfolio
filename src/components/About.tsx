@@ -1,3 +1,4 @@
+import React from 'react';
 import { MediaRenderer } from './MediaRenderer';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Textfit } from 'react-textfit';
@@ -49,7 +50,15 @@ export const About = () => {
           overflow: 'hidden'
         }}
       >
-        <h1>
+        <h1
+          css={{
+            color: '#fdfdfd',
+            lineHeight: 1.4,
+            height: '100%',
+            width: '100%',
+            textAlign: 'justify'
+          }}
+        >
           <Textfit
             mode="multi"
             css={{

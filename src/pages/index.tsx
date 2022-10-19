@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { useEffect } from 'react';
 import { throttle } from 'lodash';
@@ -182,11 +182,21 @@ const IndexPage = (props: PageProps<DataProps>) => {
 
   if (!loadingAnimationDone) {
     return (
-      <Landing
-        entryText={allContentfulLanding.edges[0].node.entryText}
-        setHasPerformedFirstClick={setHasPerformedFirstClick}
-        loadingAnimationStarted={loadingAnimationStarted}
-      />
+      <div
+        css={{
+          width: '100%',
+          height: isMobile ? '-webkit-fill-available' : '100vh',
+          background: '#ffffff',
+          display: 'flex',
+          alignItems: 'stretch'
+        }}
+      >
+        <Landing
+          entryText={allContentfulLanding.edges[0].node.entryText}
+          setHasPerformedFirstClick={setHasPerformedFirstClick}
+          loadingAnimationStarted={loadingAnimationStarted}
+        />
+      </div>
     );
   }
 
