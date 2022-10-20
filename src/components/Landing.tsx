@@ -4,28 +4,28 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 const bounce = keyframes`
-  // from, 20%, 53%, 80%, to {
-  //   transform: translate3d(0,0,0);
-  // }
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+  }
 
   40%, 43% {
-    transform: translate3d(-.04em, 0px, 0);
+    transform: translate3d(-.04em, 0.01em, 0);
   }
 
   70% {
-    transform: translate3d(.04em, 0px, 0);
+    transform: translate3d(.04em, -.01em, 0);
   }
 
   90% {
-    transform: translate3d(.07em,0px,0);
+    transform: translate3d(.07em,0em,0);
   }
 `;
 
 const CustomLetter = styled.h2`
-  font-size: 180px;
-  filter: blur(8px);
+  font-size: 120px;
+  filter: blur(5px);
   display: inline-block;
-  letter-spacing: -8px;
+  letter-spacing: -12px;
 
   @media (max-width: 800px) {
     font-size: 80px;

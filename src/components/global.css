@@ -11,7 +11,7 @@ html {
 
 html,
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, 'Inter', sans-serif;
   /* letter-spacing: 0.1em; */
   background: #ffffff;
   color: #121212;
@@ -25,17 +25,18 @@ h5,
 h6,
 p,
 a {
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, 'Inter', sans-serif;
   color: #121212;
   letter-spacing: 0.05em;
   font-weight: 500;
 }
 
 h1 {
-  font-family: 'Inter', sans-serif;
+  font-family: Arial, 'Inter', sans-serif;
+  font-size: 1.8rem;
   color: #121212;
   letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 ::selection {

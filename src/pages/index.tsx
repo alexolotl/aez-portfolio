@@ -37,6 +37,7 @@ export type DataEdge = {
     id: number;
     description: string;
     mediafile: MediaFile;
+    thumb: MediaFile;
     supportingMediafiles: MediaFile[];
     title: string;
     link: string;
@@ -107,6 +108,7 @@ const IndexPage = (props: PageProps<DataProps>) => {
     const handleCheckIfMobile = throttle(() => {
       if (window.innerWidth <= 800) {
         setIsMobile(true);
+        setLoadingAnimationDone(true);
       } else {
         setIsMobile(false);
       }
@@ -207,7 +209,7 @@ export default IndexPage;
 
 export const query = graphql`
   {
-    allContentfulPortfolioItem {
+    allContentfulPortfolioItem(sort: { fields: sequence }) {
       totalCount
       edges {
         node {
@@ -215,6 +217,20 @@ export const query = graphql`
           description
           link
           title
+          thumb {
+            id
+            title
+            file {
+              url
+              contentType
+              details {
+                image {
+                  height
+                  width
+                }
+              }
+            }
+          }
           mediafile {
             id
             title

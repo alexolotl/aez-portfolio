@@ -30,6 +30,7 @@ export const MobileProjects = (props: Props) => {
         isOpen={activeContentType === ContentType.ABOUT}
         HEADER_HEIGHT={HEADER_HEIGHT}
         isMobile
+        marginBottom={16}
       >
         <About />
       </DropdownContainer>
@@ -53,7 +54,7 @@ export const MobileProjects = (props: Props) => {
       <div
         css={{
           padding: 8,
-          paddingTop: 16,
+          paddingTop: 0,
           width: '100%',
           maxWidth: '100%',
           background: '#fdfdfd',
@@ -80,7 +81,11 @@ export const MobileProjects = (props: Props) => {
               }}
               onClick={() => handleClick(edge)}
             >
-              <MediaRenderer mediafile={edge.node.mediafile} hasBorder absolute noPlay />
+              <MediaRenderer
+                mediafile={edge.node.thumb ? edge.node.thumb : edge.node.mediafile}
+                hasBorder
+                absolute
+              />
             </div>
           ))}
         </div>

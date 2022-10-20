@@ -16,8 +16,8 @@ export const MediaRenderer = (props: Props) => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // TODO not quite reliable as to video load status
   const [videoIsLoaded, setVideoIsLoaded] = useState(false);
-
   useEffect(() => {
     if (!videoRef || !videoRef.current) return;
 
@@ -65,7 +65,6 @@ export const MediaRenderer = (props: Props) => {
             playsInline
             ref={videoRef}
           />
-          <div>mobile placeholder...</div>
         </>
       ) : (
         <>
@@ -77,10 +76,8 @@ export const MediaRenderer = (props: Props) => {
               maxWidth: '100%',
               objectFit: contain ? 'contain' : 'cover',
               border: hasBorder ? '1px solid #121212' : 'none',
-              zIndex: zIndex !== undefined ? zIndex : 'inherit',
-              position: absolute ? 'absolute' : 'block',
-              top: 0,
-              left: 0
+              zIndex: 1,
+              background: 'transparent'
             }}
             autoPlay
             preload="auto"
@@ -89,19 +86,21 @@ export const MediaRenderer = (props: Props) => {
             playsInline
             ref={videoRef}
           />
-          <div
+
+          {/* TODO spinner behind element on mobile <div
             css={{
-              display: videoIsLoaded ? 'none' : 'flex',
-              position: 'absolute',
-              top: 0,
-              left: 0,
+              display: 'flex',
               width: '100%',
               height: '100%',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              zIndex: -1,
+              position: 'absolute',
+              top: 0,
+              left: 0
             }}
           >
-            {/* <div className="lds-spinner">
+            <div className="lds-spinner">
               <div></div>
               <div></div>
               <div></div>
@@ -114,8 +113,8 @@ export const MediaRenderer = (props: Props) => {
               <div></div>
               <div></div>
               <div></div>
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </>
       )}
     </>

@@ -20,10 +20,7 @@ const Header = ({
   <HeaderWrapper css={{ height: HEADER_HEIGHT }}>
     <HeaderContainer>
       {/* <BlobText text={siteTitle.toUpperCase()} /> */}
-      <StyledHeader>
-        {/* <StyledLink to="/">{siteTitle}</StyledLink> */}
-        {siteTitle}
-      </StyledHeader>
+      <StyledHeader>{siteTitle}</StyledHeader>
       <div
         onClick={() => {
           setActiveContentType((c) =>
@@ -31,7 +28,12 @@ const Header = ({
           );
           setSelectedProjectIdx(null);
         }}
-        css={{ width: 16, height: 16, background: '#121212', cursor: 'pointer' }}
+        css={{
+          width: 16,
+          height: 16,
+          background: '#121212',
+          cursor: 'pointer'
+        }}
       />
     </HeaderContainer>
   </HeaderWrapper>
@@ -41,7 +43,7 @@ export default Header;
 
 const HeaderWrapper = styled.div`
   margin-bottom: '1.45rem';
-  border-bottom: 2px solid #121212;
+  // border-bottom: 2px solid #121212;
   position: sticky;
   top: 0;
   background-color: #fdfdfd;
@@ -50,6 +52,9 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 0 16px;
+  @media (max-width: 800px) : {
+    padding: 0 8px;
+  }
 `;
 const HeaderContainer = styled.div`
   // margin: 0 auto;

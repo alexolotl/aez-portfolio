@@ -15,10 +15,11 @@ export const SelectedProject = (props: Props) => {
   return (
     <div
       css={{
+        flex: '1 0 auto',
         alignSelf: 'flex-start',
         position: 'sticky',
         top: 0,
-        width: selectedProjectIdx !== null ? 500 : 0,
+        width: selectedProjectIdx !== null ? 400 : 0,
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
         transition: 'width .5s',
@@ -31,7 +32,6 @@ export const SelectedProject = (props: Props) => {
     >
       <div
         css={{
-          maxWidth: '100%',
           overflow: 'hidden',
           overflowY: 'scroll',
           padding: 24,
@@ -41,7 +41,8 @@ export const SelectedProject = (props: Props) => {
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'space-between',
-          flexFlow: 'column nowrap'
+          flexFlow: 'column nowrap',
+          width: 400
         }}
       >
         <div>
