@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, PageProps, useStaticQuery } from 'gatsby';
 import { useEffect } from 'react';
 import { throttle } from 'lodash';
 import { Layout } from '../components/layout';
@@ -61,7 +61,7 @@ type DataProps = {
 };
 
 const IndexPage = (props: PageProps<DataProps>) => {
-  const { allContentfulPortfolioItem, allContentfulLanding } = props.data;
+  const { allContentfulPortfolioItem, allContentfulLanding, allContentfulAbout } = props.data;
 
   const [activeContentType, setActiveContentType] = useState<ContentType>(ContentType.NONE);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState<number | null>(null);
@@ -265,6 +265,13 @@ export const query = graphql`
       edges {
         node {
           entryText
+        }
+      }
+    }
+    allContentfulAbout {
+      edges {
+        node {
+          secondaryDescription
         }
       }
     }
