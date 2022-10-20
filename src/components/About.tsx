@@ -74,7 +74,6 @@ export const About = () => {
               data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode
                 .description
             }
-            {' / my first initial + my last name + 219 at gmail'}
           </Textfit>
         </h1>
       </div>

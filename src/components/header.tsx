@@ -43,7 +43,7 @@ export default Header;
 
 const HeaderWrapper = styled.div`
   margin-bottom: '1.45rem';
-  // border-bottom: 2px solid #121212;
+  border-bottom: 2px solid #121212;
   position: sticky;
   top: 0;
   background-color: #fdfdfd;

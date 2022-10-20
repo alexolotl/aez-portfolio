@@ -108,7 +108,6 @@ const IndexPage = (props: PageProps<DataProps>) => {
     const handleCheckIfMobile = throttle(() => {
       if (window.innerWidth <= 800) {
         setIsMobile(true);
-        setLoadingAnimationDone(true);
       } else {
         setIsMobile(false);
       }

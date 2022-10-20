@@ -2,6 +2,8 @@ import React from 'react';
 import { keyframes } from '@emotion/css';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { MediaRenderer } from './MediaRenderer';
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -43,6 +45,19 @@ export const Landing = (props: Props) => {
   const { setHasPerformedFirstClick, entryText, loadingAnimationStarted } = props;
   const [enteredPassword, setEnteredPassword] = useState(true);
   const [passwordInput, setPasswordInput] = useState<string>('');
+
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulAsset(contentful_id: { eq: "4qfgNASudpl6ganJ2ZQIpQ" }) {
+        id
+        title
+        file {
+          contentType
+          url
+        }
+      }
+    }
+  `);
 
   useEffect(() => {
     if (!passwordInput) return;
@@ -113,6 +128,11 @@ export const Landing = (props: Props) => {
     >
       <p>Under Construction</p>
       <input type="text" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
+      <div
+        css={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', zIndex: 10 }}
+      >
+        <MediaRenderer mediafile={data.contentfulAsset} absolute />
+      </div>
     </div>
   );
 };

@@ -57,7 +57,7 @@ export const ProjectsSection = (props: Props) => {
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
         overflowY: 'hidden',
-        // borderTop: activeContentType === ContentType.ABOUT ? '2px solid black' : 'none',
+        borderTop: activeContentType === ContentType.ABOUT ? '2px solid black' : 'none',
         top: activeContentType === ContentType.ABOUT ? '-2px' : 0
       }}
     >
