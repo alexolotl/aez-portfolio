@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { ContentType, DataEdge } from '../pages';
 import { MediaRenderer } from './MediaRenderer';
 
@@ -20,7 +20,6 @@ export const HoverableRow = (props: Props) => {
   const {
     edge,
     isActive,
-    isHovered,
     isSelected,
     setActiveIndex,
     setSelectedProjectIdx,
