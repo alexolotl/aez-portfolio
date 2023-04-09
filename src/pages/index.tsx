@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import 'react/jsx-runtime';
+
+import { useState } from 'react';
 import { graphql, PageProps } from 'gatsby';
 import { useEffect } from 'react';
 import { throttle } from 'lodash';
@@ -61,7 +63,7 @@ type DataProps = {
 };
 
 const IndexPage = (props: PageProps<DataProps>) => {
-  const { allContentfulPortfolioItem, allContentfulLanding, allContentfulAbout } = props.data;
+  const { allContentfulPortfolioItem, allContentfulLanding } = props.data;
 
   const [activeContentType, setActiveContentType] = useState<ContentType>(ContentType.NONE);
   const [selectedProjectIdx, setSelectedProjectIdx] = useState<number | null>(null);
@@ -208,7 +210,7 @@ export default IndexPage;
 
 export const query = graphql`
   {
-    allContentfulPortfolioItem(sort: { fields: sequence }) {
+    allContentfulPortfolioItem(sort: { sequence: ASC }) {
       totalCount
       edges {
         node {

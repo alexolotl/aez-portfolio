@@ -55,7 +55,7 @@ export const MediaRenderer = (props: Props) => {
               objectFit: contain ? 'contain' : 'cover',
               border: hasBorder ? '1px solid #121212' : 'none',
               zIndex: zIndex !== undefined ? zIndex : 'inherit',
-              position: absolute ? 'absolute' : 'block',
+              position: absolute ? 'absolute' : 'relative',
               top: 0,
               left: 0
             }}
@@ -128,7 +128,7 @@ export const MediaRenderer = (props: Props) => {
         objectFit: contain ? 'contain' : 'cover',
         border: hasBorder ? '1px solid #121212' : 'none',
         zIndex: zIndex !== undefined ? zIndex : 'inherit',
-        position: absolute ? 'absolute' : 'block',
+        position: absolute ? 'absolute' : 'relative',
         top: 0,
         left: 0
       }}

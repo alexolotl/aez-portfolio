@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 if (process.env.ENVIRONMENT !== 'production') {
   require('dotenv').config();
 }
@@ -27,7 +29,9 @@ module.exports = {
     'gatsby-plugin-offline',
     `gatsby-plugin-typescript`,
     'gatsby-transformer-remark',
-    'gatsby-plugin-sharp',
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
     {
       resolve: `gatsby-source-contentful`,
       options: contentfulConfig
@@ -35,6 +39,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-emotion`
     },
+    'gatsby-plugin-postcss',
     {
       resolve: `gatsby-omni-font-loader`,
       options: {

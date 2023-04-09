@@ -13,13 +13,11 @@
     "noImplicitReturns": true,
     "strict": true,
     "strictFunctionTypes": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "pretty": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "downlevelIteration": true,
-    "types": ["@emotion/core"]
+    "downlevelIteration": true
   },
   "include": ["src/**/*"]
 }

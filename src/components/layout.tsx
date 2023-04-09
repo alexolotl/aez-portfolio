@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import Header from './header';
 
 import './layout.css';
-import './global.css';
+import '../styles/global.css';
 import { ContentType } from '../pages';
 
 type Props = {
@@ -36,10 +36,7 @@ export const Layout = ({
       <>
         <Helmet
           title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' }
-          ]}
+          meta={[{ name: 'description', content: 'AZ Portfolio' }]}
         >
           <html lang="en" />
         </Helmet>
