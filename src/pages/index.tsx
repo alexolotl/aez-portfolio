@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { graphql, PageProps, useStaticQuery } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import { useEffect } from 'react';
 import { throttle } from 'lodash';
 import { Layout } from '../components/layout';
@@ -265,13 +265,6 @@ export const query = graphql`
       edges {
         node {
           entryText
-        }
-      }
-    }
-    allContentfulAbout {
-      edges {
-        node {
-          secondaryDescription
         }
       }
     }
