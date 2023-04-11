@@ -1,0 +1,51 @@
+@layer keyframes {
+  @keyframes bounce {
+    from,
+    20%,
+    53%,
+    80%,
+    to {
+      transform: translate3d(0, 0, 0);
+      filter: blur(2px);
+    }
+
+    40%,
+    43% {
+      transform: translate3d(-0.1em, 0px, 0);
+      filter: blur(2.5px);
+    }
+
+    70% {
+      transform: translate3d(0.1em, 0px, 0);
+      filter: blur(2px);
+    }
+
+    90% {
+      transform: translate3d(0.1em, 0px, 0);
+      filter: blur(1px);
+    }
+  }
+
+  @keyframes squirm {
+    from,
+    20%,
+    53%,
+    80%,
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+
+    40%,
+    43% {
+      transform: translate3d(-0.04em, 0.01em, 0);
+    }
+
+    70% {
+      transform: translate3d(0.04em, -0.01em, 0);
+    }
+
+    90% {
+      transform: translate3d(0.07em, 0em, 0);
+    }
+  }
+}

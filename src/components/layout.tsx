@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-import styled from '@emotion/styled';
 
 import Header from './header';
 
@@ -46,14 +45,8 @@ export const Layout = ({
           setSelectedProjectIdx={setSelectedProjectIdx}
           HEADER_HEIGHT={HEADER_HEIGHT}
         />
-        <Container>{children}</Container>
+        <div className="my-0 mx-auto max-w-screen overflow-x-hidden">{children}</div>
       </>
     )}
   />
 );
-
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 100vw;
-  overflow-x: hidden;
-`;

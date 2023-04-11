@@ -80,20 +80,6 @@ export const HoverableRow = (props: Props) => {
     mediaRef.current &&
     mousePos.x + mediaRef.current.clientWidth + extraSpaceFromMouse > windowWidth;
 
-  if (isActive) {
-    // console.log(widthCss, heightCss, mediaRef?.current?.clientWidth);
-    // console.log(
-    //   windowWidth,
-    //   maxWidth,
-    //   mediaFullWidth,
-    //   edge.node.mediafile.file.details.image
-    //     ? edge.node.mediafile.file.details.image.width
-    //     : mediaRef?.current?.children
-    //     ? (mediaRef.current.children[0] as HTMLVideoElement).videoWidth
-    //     : 0
-    // );
-  }
-
   const hoveredXpos = flipXOrientation
     ? mousePos.x - mediaRef.current.clientWidth - extraSpaceFromMouse
     : mousePos.x + extraSpaceFromMouse;
@@ -114,42 +100,25 @@ export const HoverableRow = (props: Props) => {
   return (
     <div
       key={edge.node.id}
-      css={{
-        position: 'relative',
-        width: '100%',
-        cursor: 'pointer',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        backgroundImage: isActive ? 'radial-gradient(#121212 0.5px, #fafafa 0.5px)' : '',
-        backgroundSize: '10px 10px',
-        padding: '0 16px'
+      className="relative w-full cursor-pointer h-[60px] flex items-center bg-[length:10px_10px] px-4 py-0"
+      style={{
+        backgroundImage: isActive ? 'radial-gradient(#121212 0.5px, #fafafa 0.5px)' : ''
       }}
       onClick={handleClick}
       onMouseEnter={() => setActiveIndex(i)}
       onMouseLeave={() => setActiveIndex(null)}
     >
-      <h3
-        css={{
-          marginBottom: 0
-        }}
-      >
-        {edge.node.title}
-      </h3>
+      <h3 className="mb-0">{edge.node.title}</h3>
 
       <div
-        css={{
-          position: 'fixed',
+        className={`fixed overflow-hidden ${isActive ? 'opacity-100' : 'opacity-0'} ${
+          isActive ? 'visible' : 'invisible'
+        } ${activeContentType === ContentType.NONE ? 'block' : 'hidden'} z-[1000]`}
+        style={{
           left: xPos,
           top: yPos,
           width: widthCss,
-          height: heightCss,
-          overflow: 'hidden',
-          opacity: isActive ? 1 : 0,
-          visibility: isActive ? 'visible' : 'hidden',
-          boxShadow: '10px 10px 20px #555555',
-          zIndex: 1000,
-          display: activeContentType !== ContentType.NONE ? 'none' : 'block'
+          height: heightCss
         }}
         ref={mediaRef}
       >

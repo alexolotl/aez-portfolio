@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import styled from '@emotion/styled';
 import { ContentType } from '../pages';
 import { BlobText } from './BlobText';
 
@@ -17,10 +15,13 @@ const Header = ({
   setSelectedProjectIdx,
   HEADER_HEIGHT
 }: Props) => (
-  <HeaderWrapper css={{ height: HEADER_HEIGHT }}>
-    <HeaderContainer>
-      {/* <BlobText text={siteTitle.toUpperCase()} /> */}
-      <StyledHeader>{siteTitle}</StyledHeader>
+  <div
+    className={`h-[${HEADER_HEIGHT}] sticky top-0 flex items-center justify-start px-4 md:px-2 bg-[#fdfdfd]
+     z-[2000] mb-[1.45rem] border-b-2 border-[#121212]`}
+  >
+    <div className="flex items-center justify-between w-full">
+      <BlobText text={siteTitle.toUpperCase()} />
+      <div className="m-0 cursor-pointer">{siteTitle}</div>
       <div
         onClick={() => {
           setActiveContentType((c) =>
@@ -28,50 +29,12 @@ const Header = ({
           );
           setSelectedProjectIdx(null);
         }}
-        css={{
-          width: 16,
-          height: 16,
-          background: '#121212',
-          cursor: 'pointer'
-        }}
+        className="w-4 h-4 bg-[#121212] cursor-pointer"
       />
-    </HeaderContainer>
-  </HeaderWrapper>
+    </div>
+  </div>
 );
 
 export default Header;
-
-const HeaderWrapper = styled.div`
-  margin-bottom: '1.45rem';
-  border-bottom: 2px solid #121212;
-  position: sticky;
-  top: 0;
-  background-color: #fdfdfd;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 16px;
-  @media (max-width: 800px) : {
-    padding: 0 8px;
-  }
-`;
-const HeaderContainer = styled.div`
-  // margin: 0 auto;
-  // padding: 1.45rem 1.0875rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
-const StyledHeader = styled.h1`
-  margin: 0;
-  cursor: pointer;
-  // text-transform: uppercase;
-  // filter: blur(0px);
-  // :hover {
-  //   filter: blur(2px);
-  // }
-`;
 
 // Aeroport, FavoritPro-Regular, Perun

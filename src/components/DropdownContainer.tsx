@@ -13,14 +13,11 @@ export const DropdownContainer = (props: Props) => {
 
   return (
     <div
-      css={{
+      className="w-full top-0 overflow-hidden transition-all duration-500"
+      style={{
         height: isOpen ? 500 : 0,
-        width: '100%',
-        transition: 'height .5s, padding .5s',
-        overflow: 'hidden',
-        position: isMobile ? 'relative' : 'sticky',
-        top: 0,
-        marginBottom: marginBottom && isOpen ? marginBottom : 'initial'
+        marginBottom: marginBottom && isOpen ? marginBottom : 'initial',
+        position: isMobile ? 'relative' : 'sticky'
       }}
     >
       {children}

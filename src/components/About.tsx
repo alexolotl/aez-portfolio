@@ -36,28 +36,15 @@ export const About = () => {
     }
   `);
 
+  const { description } =
+    data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode;
+
   return (
-    <div css={{ height: '500px' }}>
-      <div
-        css={{
-          zIndex: 1,
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          left: 0,
-          top: 0,
-          padding: '16px 24px',
-          overflow: 'hidden'
-        }}
-      >
+    <div className="h-[500px]">
+      <div className="w-full h-full relative left-0 top-0 py-4 px-6 overflow-hidden z-[1]">
         <h1
-          css={{
-            color: '#fdfdfd',
-            lineHeight: 1.4,
-            height: '100%',
-            width: '100%',
-            textAlign: 'justify'
-          }}
+          // line height was 1.4 not 1.375
+          className="w-full h-full leading-snug text-justify text-[#fdfdfd]"
         >
           <Textfit
             mode="multi"
@@ -68,12 +55,10 @@ export const About = () => {
               width: '100%',
               textAlign: 'justify'
             }}
+            className="w-full h-full leading-snug text-justify text-[#fdfdfd]"
             max={200}
           >
-            {
-              data.allContentfulAbout.edges[0].node.childContentfulAboutDescriptionTextNode
-                .description
-            }
+            {description}
           </Textfit>
         </h1>
       </div>
