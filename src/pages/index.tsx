@@ -143,7 +143,12 @@ const IndexPage = (props: PageProps<DataProps>) => {
     }
 
     return (
-      <div css={{ opacity: fadeInOpacity, transition: 'opacity 1s' }}>
+      <div
+        style={{
+          opacity: fadeInOpacity,
+          transition: 'opacity 1s'
+        }}
+      >
         <Layout
           setActiveContentType={setActiveContentType}
           setSelectedProjectIdx={setSelectedProjectIdx}
@@ -186,12 +191,9 @@ const IndexPage = (props: PageProps<DataProps>) => {
   if (!loadingAnimationDone) {
     return (
       <div
-        css={{
-          width: '100%',
-          height: isMobile ? '-webkit-fill-available' : '100vh',
-          background: '#ffffff',
-          display: 'flex',
-          alignItems: 'stretch'
+        className="w-full bg-white flex items-stretch"
+        style={{
+          height: isMobile ? '-webkit-fill-available' : '100vh'
         }}
       >
         <Landing

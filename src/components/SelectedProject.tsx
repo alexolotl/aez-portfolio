@@ -14,49 +14,35 @@ export const SelectedProject = (props: Props) => {
 
   return (
     <div
-      css={{
-        flex: '1 0 auto',
-        alignSelf: 'flex-start',
-        position: 'sticky',
-        top: 0,
+      className="flex-[1_0_auto] self-start sticky top-0 transition-width duration-500 ease-in-out overflow-hidden cursor-e-resize"
+      style={{
         width: selectedProjectIdx !== null ? 400 : 0,
         height: `calc(100vh - ${HEADER_HEIGHT}px)`,
         maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
-        transition: 'width .5s',
-        overflow: 'hidden',
-        cursor: 'e-resize',
         backgroundImage: 'radial-gradient(#121212 0.5px, #fafafa 0.5px)',
         backgroundSize: '10px 10px'
       }}
       onClick={() => setSelectedProjectIdx(null)}
     >
       <div
-        css={{
-          overflow: 'hidden',
-          overflowY: 'scroll',
-          padding: 24,
-          textAlign: 'left',
+        className="flex items-start justify-space-between flex-col w-[400px] overflow-x-hidden overflow-y-scroll p-6 text-left"
+        style={{
           height: `calc(100vh - ${HEADER_HEIGHT}px)`,
-          maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          flexFlow: 'column nowrap',
-          width: 400
+          maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`
         }}
       >
         <div>
-          <h3 css={{ textTransform: 'uppercase' }}>{!!edge && edge.node.title}</h3>
+          <h3 className="uppercase">{!!edge && edge.node.title}</h3>
           {!!edge && edge.node.description && <p>{!!edge && edge.node.description}</p>}
         </div>
 
-        <div css={{ width: '100%', maxHeight: '40vh' }}>
+        <div className="w-full max-h-[40vh]">
           <MediaRenderer mediafile={edge ? edge.node.mediafile : undefined} contain />
         </div>
 
         {edge && edge.node.supportingMediafiles
           ? edge.node.supportingMediafiles.map((mediaFile) => (
-              <div css={{ width: '100%', maxHeight: '40vh' }} key={mediaFile.id}>
+              <div className="w-full max-h-[40vh]" key={mediaFile.id}>
                 <MediaRenderer mediafile={mediaFile} contain />
               </div>
             ))

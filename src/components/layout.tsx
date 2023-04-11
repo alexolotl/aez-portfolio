@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
@@ -8,12 +8,11 @@ import './layout.css';
 import '../styles/global.css';
 import { ContentType } from '../pages';
 
-type Props = {
-  children: React.ReactNode;
+interface Props extends PropsWithChildren {
   setActiveContentType: React.Dispatch<React.SetStateAction<ContentType>>;
   setSelectedProjectIdx: React.Dispatch<React.SetStateAction<number | null>>;
   HEADER_HEIGHT: number;
-};
+}
 
 export const Layout = ({
   children,

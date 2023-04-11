@@ -25,7 +25,7 @@ export const MobileProjects = (props: Props) => {
   }, []);
 
   return (
-    <div css={{ display: 'flex', flexFlow: 'column nowrap', width: '100%' }}>
+    <div className="w-full flex flex-col">
       <DropdownContainer
         isOpen={activeContentType === ContentType.ABOUT}
         HEADER_HEIGHT={HEADER_HEIGHT}
@@ -36,12 +36,8 @@ export const MobileProjects = (props: Props) => {
       </DropdownContainer>
 
       {selectedProject !== null && (
-        <div
-          css={{
-            padding: '16px 8px'
-          }}
-        >
-          <div css={{ width: '40px', height: '20px' }} onClick={() => setSelectedProject(null)}>
+        <div className="py-4 px-2">
+          <div className="w-[40px] h-[20px]" onClick={() => setSelectedProject(null)}>
             Back
           </div>
           <br />
@@ -51,34 +47,12 @@ export const MobileProjects = (props: Props) => {
         </div>
       )}
 
-      <div
-        css={{
-          padding: 8,
-          paddingTop: 0,
-          width: '100%',
-          maxWidth: '100%',
-          background: '#fdfdfd',
-          zIndex: 1000,
-          minHeight: '100vh'
-        }}
-      >
-        <div
-          css={{
-            width: '100%',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridGap: '10px'
-          }}
-        >
+      <div className="w-full max-w-full min-h-[100vh] p-2 pt-0 bg-[#fdfdfd] z-[1000]">
+        <div className="w-full grid gap-4 grid-cols-2">
           {edges.map((edge) => (
             <div
               key={edge.node.id}
-              css={{
-                height: 0,
-                paddingTop: '60%',
-                position: 'relative',
-                cursor: 'pointer'
-              }}
+              className="h-0 pt-[60%] relative cursor-pointer"
               onClick={() => handleClick(edge)}
             >
               <MediaRenderer

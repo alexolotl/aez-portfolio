@@ -48,13 +48,6 @@ export const About = () => {
         >
           <Textfit
             mode="multi"
-            css={{
-              color: '#fdfdfd',
-              lineHeight: 1.4,
-              height: '100%',
-              width: '100%',
-              textAlign: 'justify'
-            }}
             className="w-full h-full leading-snug text-justify text-[#fdfdfd]"
             max={200}
           >
@@ -62,17 +55,7 @@ export const About = () => {
           </Textfit>
         </h1>
       </div>
-      <div
-        css={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 0,
-          background: '#12121222'
-        }}
-      >
+      <div className="w-full h-full absolute left-0 top-0 z-0 bg-[#12121222]">
         <MediaRenderer mediafile={data.contentfulAsset} zIndex={0} />
       </div>
     </div>

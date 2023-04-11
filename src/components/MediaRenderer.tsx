@@ -48,16 +48,12 @@ export const MediaRenderer = (props: Props) => {
         <>
           <video
             src={mediafile.file.url}
-            css={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '100%',
-              objectFit: contain ? 'contain' : 'cover',
+            className={`w-full h-full max-w-full ${contain ? 'object-contain' : 'object-cover'} ${
+              absolute ? 'absolute' : ''
+            } top-0 left-0 bg-transparent`}
+            style={{
               border: hasBorder ? '1px solid #121212' : 'none',
-              zIndex: zIndex !== undefined ? zIndex : 'inherit',
-              position: absolute ? 'absolute' : 'relative',
-              top: 0,
-              left: 0
+              zIndex: zIndex !== undefined ? zIndex : 1
             }}
             preload="auto"
             loop
@@ -70,15 +66,10 @@ export const MediaRenderer = (props: Props) => {
         <>
           <video
             src={mediafile.file.url}
-            css={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '100%',
-              objectFit: contain ? 'contain' : 'cover',
-              border: hasBorder ? '1px solid #121212' : 'none',
-              zIndex: 1,
-              background: 'transparent'
-            }}
+            className={`w-full h-full max-w-full ${
+              contain ? 'object-contain' : 'object-cover'
+            } z-[1] bg-transparent`}
+            style={{ border: hasBorder ? '1px solid #121212' : 'none' }}
             autoPlay
             preload="auto"
             loop
@@ -86,51 +77,18 @@ export const MediaRenderer = (props: Props) => {
             playsInline
             ref={videoRef}
           />
-
-          {/* TODO spinner behind element on mobile <div
-            css={{
-              display: 'flex',
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: -1,
-              position: 'absolute',
-              top: 0,
-              left: 0
-            }}
-          >
-            <div className="lds-spinner">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div> */}
         </>
       )}
     </>
   ) : (
     <img
       src={mediafile.file.url}
-      css={{
-        width: '100%',
-        height: '100%',
-        maxWidth: '100%',
-        objectFit: contain ? 'contain' : 'cover',
+      className={`w-full h-full max-w-full ${contain ? 'object-contain' : 'object-cover'} ${
+        absolute ? 'absolute' : ''
+      } top-0 left-0`}
+      style={{
         border: hasBorder ? '1px solid #121212' : 'none',
-        zIndex: zIndex !== undefined ? zIndex : 'inherit',
-        position: absolute ? 'absolute' : 'relative',
-        top: 0,
-        left: 0
+        zIndex: zIndex !== undefined ? zIndex : 1
       }}
       onClick={() => (handleClick ? handleClick() : null)}
     />

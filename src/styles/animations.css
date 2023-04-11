@@ -11,17 +11,17 @@
 
     40%,
     43% {
-      transform: translate3d(-0.1em, 0px, 0);
+      transform: translate3d(-0.05em, 0px, 0);
       filter: blur(2.5px);
     }
 
     70% {
-      transform: translate3d(0.1em, 0px, 0);
+      transform: translate3d(0.05em, 0px, 0);
       filter: blur(2px);
     }
 
     90% {
-      transform: translate3d(0.1em, 0px, 0);
+      transform: translate3d(0.05em, 0px, 0);
       filter: blur(1px);
     }
   }
