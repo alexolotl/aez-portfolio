@@ -37,9 +37,9 @@ export const MobileProjects = (props: Props) => {
 
       {selectedProject !== null && (
         <div className="py-4 px-2">
-          <div className="w-[40px] h-[20px]" onClick={() => setSelectedProject(null)}>
+          <p className="w-[40px] h-[20px]" onClick={() => setSelectedProject(null)}>
             Back
-          </div>
+          </p>
           <br />
           <h2>{selectedProject.node.title}</h2>
           <p>{selectedProject.node.description}</p>
@@ -47,7 +47,7 @@ export const MobileProjects = (props: Props) => {
         </div>
       )}
 
-      <div className="w-full max-w-full min-h-[100vh] p-2 pt-0 bg-[#fdfdfd] z-[1000]">
+      <div className="w-full max-w-full min-h-[100vh] p-2 pt-0 mt-3 bg-[#fdfdfd] z-[1000]">
         <div className="w-full grid gap-4 grid-cols-2">
           {edges.map((edge) => (
             <div

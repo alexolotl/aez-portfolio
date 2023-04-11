@@ -17,7 +17,7 @@ const Header = ({
 }: Props) => (
   <div
     className={`h-[${HEADER_HEIGHT}] sticky top-0 flex items-center justify-start px-4 md:px-2 bg-[#fdfdfd]
-     z-[2000] mb-[1.45rem] md:mb-0 border-b-2 border-[#121212]`}
+     z-[2000] mb-0 border-b-2 border-[#121212]`}
   >
     <div className="flex items-center justify-between w-full">
       <BlobText text={siteTitle.toUpperCase()} />

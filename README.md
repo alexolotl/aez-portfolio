@@ -1,3 +1,9 @@
+## Alex Zisis Portfolio
+
+Some features and entries in this iteration of my portfolio are a WIP, experimenting with some hover effects, animations, and media playback. Visit `https://alexzisis.netlify.app/` for a preview - this portfolio doesn't yet cover all of my frontend work or projects, it's more a personal frontend project in itself.
+
+(Check out `https://alexzisis.com/` to see more of my work and projects)
+
 <p align="center">
   <a href="https://next.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />

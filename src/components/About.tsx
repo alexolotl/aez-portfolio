@@ -1,7 +1,6 @@
 import React from 'react';
 import { MediaRenderer } from './MediaRenderer';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Textfit } from 'react-textfit';
 
 export const About = () => {
   const data = useStaticQuery(graphql`
@@ -42,17 +41,8 @@ export const About = () => {
   return (
     <div className="h-[500px]">
       <div className="w-full h-full relative left-0 top-0 py-4 px-6 overflow-hidden z-[1]">
-        <h1
-          // line height was 1.4 not 1.375
-          className="w-full h-full leading-snug text-justify text-[#fdfdfd]"
-        >
-          <Textfit
-            mode="multi"
-            className="w-full h-full leading-snug text-justify text-[#fdfdfd]"
-            max={200}
-          >
-            {description}
-          </Textfit>
+        <h1 className="w-full h-full leading- text-justify text-[#fdfdfd] text-2xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">
+          {description}
         </h1>
       </div>
       <div className="w-full h-full absolute left-0 top-0 z-0 bg-[#12121222]">
